@@ -2,6 +2,7 @@ let video;
 let main;
 let vhs;
 let noiseGraphics;
+let glslCanvas;
 function preload() {
   vhs = loadShader("assets/shaders/vhs.vert", "assets/shaders/vhs.frag");
 }
@@ -11,7 +12,8 @@ function setup() {
   video.hide();
   noiseGraphics = createGraphics(windowWidth, windowHeight);
 	main = createGraphics(windowWidth, windowHeight);
-	createCanvas(windowWidth, windowHeight, WEBGL);
+  glslCanvas = createGraphics(windowWidth, windowHeight, WEBGL);
+	createCanvas(windowWidth, windowHeight);
 	
 }
 
@@ -26,15 +28,16 @@ function draw() {
     noiseGraphics.fill(random(80));
     noiseGraphics.rect(0, i*noiseHeight, windowWidth, noiseHeight);
   }
+  
   vhs.setUniform('canvas', main);
   vhs.setUniform("noiseCanvas", noiseGraphics);
   vhs.setUniform("uResolution", [windowWidth, windowHeight]);
   vhs.setUniform("uMouse", [mouseX,mouseY]);
   vhs.setUniform("uTime", millis()/1000);
-  shader(vhs);
-  rotateY(PI/2);
-  rect(0, 0, width, height);
-	// image(main, 0, 0, width, height);
+  glslCanvas.shader(vhs);
+  glslCanvas.rect(0, 0, width, height);
+  scale(1, -1);
+  image(glslCanvas, 0, -height);
 }
 
 function mousePressed(){

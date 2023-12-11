@@ -100,7 +100,7 @@ vec3 Blur(vec2 uv, float f, float d){
 
 void main()
 {
-    float d = .1*uMouse.x/50.0;
+    float d = 10.0;
     vec2 uv = vTexCoord.xy;
     float s = (texture2D(noiseCanvas,vTexCoord).r);
     float e = min(.30,pow(max(0.0,cos(uv.y*4.0+.3)-.75)*(s+0.5)*1.0,3.0))*25.0;
