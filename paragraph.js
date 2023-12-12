@@ -32,7 +32,7 @@ class Paragraph {
     }
 
     draw (canvas, x, y){
-        if (y > canvas.height || y < 0-this.height) {
+        if (y > canvas.height + 100 || y < 0-this.height) {
             return;
         }
         // let textWidth = canvas.textWidth("y");
@@ -42,7 +42,7 @@ class Paragraph {
         this.links.forEach(link => {
             canvas.noFill();
             canvas.stroke(0);
-            canvas.strokeWeight(2);
+            canvas.strokeWeight(4);
             let rX = x + link.x * this.charWidth - 8;
             let rY = y + link.y * this.lineHeight + this.lineHeight * 0.2;
             let rW = link.length * this.charWidth  + 16;

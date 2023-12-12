@@ -105,6 +105,16 @@ class Popup {
             popupAudio = loadSound("assets/audio/meandude.m4a", () => {popupAudio.loop()});
             video.pause();
         }
+        else if (code == "[YouTube]"){
+            window.open("https://www.youtube.com/@MichaelSadecky/featured");
+            this.focusImage = loadImage("assets/images/livepuppets.jpg");
+        }
+        else if (code == "[cassette_tapes]"){
+            this.focusImage = loadImage("assets/images/cassette.jpg");
+        }
+        else if (code == "[rainforest]"){
+            this.focusImage = loadImage("assets/images/rainforest.jpg");
+        }
         else {
             
         }
