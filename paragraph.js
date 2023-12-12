@@ -13,17 +13,28 @@ class Paragraph {
         this.links = [];
         let openingBracket;
         for (let i = 0; i < this.text.length; i++) {
-            openingBracket = this.text[i].search(/[\[\(]/);
-            let closingBracket = this.text[i].search(/[\]\)]/);
-            let content = this.text[i].substring(openingBracket, closingBracket+1);
-            if (openingBracket != -1 && closingBracket != -1) {
-                this.links.push(new Link(openingBracket, i-1, closingBracket - openingBracket + 1, content));
+            let openingBrackets = [];
+            for (let j = 0; j < this.text[i].length; j++) {
+                let char = this.text[i][j];
+                
+                if (char === "[" || char === "(") {
+                    openingBrackets.push({ char, position: j });
+                } else if (char === "]" || char === ")") {
+                    if (openingBrackets.length > 0) {
+                        let openingBracket = openingBrackets.pop();
+                        let content = this.text[i].substring(openingBracket.position, j + 1);
+                        this.links.push(new Link(openingBracket.position, i-1, j - openingBracket.position + 1, content));
+                    }
+                }
             }
         }
         this.pressedLastframe = false;
     }
 
     draw (canvas, x, y){
+        if (y > canvas.height || y < 0-this.height) {
+            return;
+        }
         // let textWidth = canvas.textWidth("y");
         // print(textWidth);
         let corner = this.charWidth;
@@ -33,14 +44,14 @@ class Paragraph {
             canvas.stroke(0);
             canvas.strokeWeight(2);
             let rX = x + link.x * this.charWidth - 8;
-            let rY = y + link.y * this.lineHeight + this.lineHeight * 0.2 - 2;
+            let rY = y + link.y * this.lineHeight + this.lineHeight * 0.2;
             let rW = link.length * this.charWidth  + 16;
-            let rH = this.lineHeight + 4;
-
+            let rH = this.lineHeight;
+            canvas.stroke(0, 0, 255);
             if (mouseX > rX && mouseX < rX + rW && mouseY > rY && mouseY < rY + rH) {
-                canvas.stroke(255, 0, 0);
+                
                 canvas.strokeWeight(8);
-                if (mouseIsPressed) {canvas.fill(255, 0, 0);}
+                if (mouseIsPressed) {canvas.fill(0, 0, 255);}
                 if (mouseIsPressed && this.pressedLastframe == false) {
                     onClickLink(link.text);
                     this.pressedLastframe = true;
@@ -53,9 +64,7 @@ class Paragraph {
         })
         canvas.noStroke();
         canvas.fill(this.color);
-        if (y > canvas.height || y < 0-this.height) {
-            return;
-        }
+        
         canvas.textSize (TEXT_SIZE);
         canvas.textFont(spaceMono);
         canvas.textAlign(LEFT);

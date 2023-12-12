@@ -13,7 +13,9 @@ let paragraphs = [];
 let charWidth;
 let windowImage;
 let drawImage = false;
-let focusImage;
+let popup;
+let popupVideo;
+
 const TEXT_SIZE = 30;
 function preload() {
   caslonRounded = loadFont("assets/fonts/caslon-rounded-regular.otf");
@@ -34,16 +36,7 @@ function onLoadStrings(data) {
 }
 
 function onClickLink (code) {
-  
-  if (code == "[Hannah]"){
-    print(code);
-    drawImage = true;
-    focusImage = loadImage("assets/images/lesser.jpeg");
-  }
-  if (code == "[Sadecky’s_Puppets]"){
-    drawImage = true;
-    focusImage = loadImage("assets/images/sadecky.jpg");
-  }
+  popup = new Popup(code, windowImage);
 }
 
 function setup() {
@@ -94,11 +87,8 @@ function draw() {
     paragraph.draw(main, unit * 2, scrollPos + offset);
     offset += paragraph.height;
   })
-  if (drawImage) {
-    let msWidth = width/2;
-    let msHeight = msWidth * windowImage.height / windowImage.width;
-    main.image(windowImage, width / 2, height/2, msWidth, msHeight);
-    main.image(focusImage, width / 2, height/2, msWidth*3/4, msHeight*3/4);
+  if (popup) {
+    popup.draw(main);
   }
 
   // post processing
@@ -125,9 +115,12 @@ function draw() {
 function mousePressed() {
   video.loop();
   hasClicked = true;
-  if (drawImage) {
-    drawImage = false;
+  popup = null;
+  if (popupVideo) {
+    popupVideo.stop();
+    popupVideo = null;
   }
+  
 }
 
 function mouseWheel() {
