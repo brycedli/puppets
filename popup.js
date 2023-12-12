@@ -28,10 +28,88 @@ class Popup {
             popupVideo.loop();
             video.pause();
         }  
+        else if (code =="[for_sale]"){
+            //open a link
+            this.focusImage = loadImage("assets/images/sale.jpg")
+            window.open("http://www.livepuppets.com/Sale.html");
+        }
+        else if (code == "[Stuck_inside_a_whale!]"){
+            this.focusImage = loadImage("assets/images/audio.png");
+            popupAudio = loadSound("assets/audio/whale.m4a", () => {popupAudio.loop()});
+            video.pause();
+        }
+        else if (code == "[$15]") {
+            this.focusImage = loadImage("assets/images/money.jpg");
+        }
+        else if (code == "[Robert]"){
+            this.focusImage = loadImage("assets/images/rob.jpg");
+        }
+        else if (code == "[storybook classic]"){
+            popupVideo = createVideo("assets/videos/fables.mp4");
+            popupVideo.hide();
+            popupVideo.loop();
+            video.pause();
+        }
+        else if (code == "[lungs_puppet]"){
+            this.focusImage = loadImage("assets/images/lungs.jpg");
+        }
+        else if (code == "[“Breathless”]"){
+            popupVideo = createVideo("assets/videos/breathless.mp4");
+            popupVideo.hide();
+            popupVideo.loop();
+            video.pause();
+        }
+        else if (code == "[Funko_Pops]"){
+            this.focusImage = loadImage("assets/images/funko.jpg");
+        }
+        else if (code == "[Florida]"){
+            this.focusImage = loadImage("assets/images/florida.jpg");
+        }
+        else if (code == "[vintage_toys?]"){
+            this.focusImage = loadImage("assets/images/fart.jpg");
+        }
+        else if (code == "[ribbon_badge]"){
+            this.focusImage = loadImage("assets/images/ribbon.jpg");
+        }
+        else if (code == "[this_picture_here]"){
+            this.focusImage = loadImage("assets/images/henson.jpg");
+        }
+        else if (code == "[Guy_Smiley]"){
+            this.focusImage = loadImage("assets/images/guy.jpg");
+        }
+        else if (code == "[Prairie_Dawn]"){
+            this.focusImage = loadImage("assets/images/prairie.jpg");
+        }
+        else if (code == "[Yeah.]"){ //mr mean dude
+            this.focusImage = loadImage("assets/images/mean.jpg");
+        }
+        else if (code == "[Michael_Sadecky]"){
+            this.focusImage = loadImage("assets/images/michael.jpg");
+        }
+        else if (code == "[sculpted_foam]"){
+            this.focusImage = loadImage("assets/images/wip.jpg");
+        }
+        else if (code == "[the_fingers]"){
+            this.focusImage = loadImage("assets/images/arm.jpg");
+        }
+        else if (code == "[grocer's_voice]"){
+            this.focusImage = loadImage("assets/images/grocer.jpg");
+        }
+        else if (code == "[Singing]"){
+            this.focusImage = loadImage("assets/images/audio.png");
+            popupAudio = loadSound("assets/audio/tired.m4a", () => {popupAudio.loop()});
+            video.pause();
+        }
+        else if (code == "[Mean_Dude_voice]"){
+            this.focusImage = loadImage("assets/images/audio.png");
+            popupAudio = loadSound("assets/audio/meandude.m4a", () => {popupAudio.loop()});
+            video.pause();
+        }
         else {
             
         }
     }
+
 
     draw (canvas) {
         let msWidth = width/2;

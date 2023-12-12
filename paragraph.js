@@ -17,9 +17,9 @@ class Paragraph {
             for (let j = 0; j < this.text[i].length; j++) {
                 let char = this.text[i][j];
                 
-                if (char === "[" || char === "(") {
+                if (char === "[") {
                     openingBrackets.push({ char, position: j });
-                } else if (char === "]" || char === ")") {
+                } else if (char === "]" ) {
                     if (openingBrackets.length > 0) {
                         let openingBracket = openingBrackets.pop();
                         let content = this.text[i].substring(openingBracket.position, j + 1);

@@ -120,7 +120,7 @@ Well, there was one that people said looked like me before I started dyeing my h
 
 >Can you talk about the process of making a puppet?
 
-Yeah, you make a mouth out of wood. Most of our mouths are made out of plywood. There’s a canvas here on top of the wood, which acted like a hinge. And then I would have a canvas strap here, this is like a shammy. That was, like, a later thing that we added. I didn't really do that because the shammies deteriorate, and the ones that I made with the canvas straps are still good. Then you cut the foam out. This one was painted so it doesn't really look good. Sometimes you do the contour on there to make different shapes on the heads. And that you'll see on some of the puppets back there, they're not all flat. Some of them have dents and bumps and things like that. But, this is just material and we cut it out and shape the tongue... After you get the head, then you put the cloth over it and make it look like that. The body’s sculpted foam and then you put maybe a ring in there to keep it from collapsing. And sometimes a ring in the bottom too. And then the fingers, I’ll show you. This is our latest one. This is what it looks like inside. This was designed by a guy that went to CMU, worked for us for a while. The rod can be taken out of the hand, but the hands still got shape if you got the rod out of it. What's tough about this is, when it's inside the hand and you're trying to get that thing to go back in there like, it’s sometimes rough to do. And then we put a loop, we give them a number, then they hang upside down in the puppet box.
+Yeah, you make a mouth out of wood. Most of our mouths are made out of plywood. There’s a canvas here on top of the wood, which acted like a hinge. And then I would have a canvas strap here, this is like a shammy. That was, like, a later thing that we added. I didn't really do that because the shammies deteriorate, and the ones that I made with the canvas straps are still good. Then you cut the foam out. This one was painted so it doesn't really look good. Sometimes you do the contour on there to make different shapes on the heads. And that you'll see on some of the puppets back there, they're not all flat. Some of them have dents and bumps and things like that. But, this is just material and we cut it out and shape the tongue... After you get the head, then you put the cloth over it and make it look like that. The body’s [sculpted_foam] and then you put maybe a ring in there to keep it from collapsing. And sometimes a ring in the bottom too. And then [the_fingers], I’ll show you. This is our latest one. This is what it looks like inside. This was designed by a guy that went to CMU, worked for us for a while. The rod can be taken out of the hand, but the hands still got shape if you got the rod out of it. What's tough about this is, when it's inside the hand and you're trying to get that thing to go back in there like, it’s sometimes rough to do. And then we put a loop, we give them a number, then they hang upside down in the puppet box.
 
 >Which one has the most unique backstory?
 
@@ -134,7 +134,7 @@ I'm the dean of you day’s yore
 I'll take you back and show you yesterday 
 
 You will learn on this night the difference between dark and light, 
-Your true nature has been concealed and on this eve will be revealed 
+Your true nature has been concealed and on this eve will be revealed
 
 So we leave this little tale
 There’s a lot I will unveil
@@ -155,11 +155,11 @@ They got somebody that really wasn't a very good puppeteer at all so… they get
 
 He–llo.. Welcome to my humble abode.
 
-Actually, this is the grocer's voice. Now, what's interesting about my makeup, not makeup. I'm not wearing makeup. But anyway.
+Actually, this is the [grocer's_voice]. Now, what's interesting about my makeup, not makeup. I'm not wearing makeup. But anyway.
 
-(changes the tone of his voice) 
+He changes the tone of his voice.
 
-Oh, I'll use my Mean Dude voice. Hey, what are you doing there? Oh, okay. I used to be a witch in the first Halloween show. And my head was perfect to put the pointy witch hat on. And we took the hat off. And we started putting hair on there. And then I was gonna put hair on the top and my wife said, No, leave it go. So here I am, slightly bald and pointy. That's the story of Mr. Mean Dude
+Oh, I'll use my [Mean_Dude_voice]. Hey, what are you doing there? Oh, okay. I used to be a witch in the first Halloween show. And my head was perfect to put the pointy witch hat on. And we took the hat off. And we started putting hair on there. And then I was gonna put hair on the top and my wife said, No, leave it go. So here I am, slightly bald and pointy. That's the story of Mr. Mean Dude
 
 I had someone come in and they tried to remake him. Oh, he's got a puff ball nose. You gotta take that off. And I'm like, “No, you can't. He's Mr. Mean Dude. You can’t change his nose. He has a yellow puffball nose”.
 
@@ -197,7 +197,8 @@ Would I do it again? I don’t have enough years left.
 
 I mean, I’d do it again. I’d just try to, you know, obviously avoid the mistakes. And yeah, I wouldn't give up the experience. I got to travel and meet a lot of people. When you start to retire and start telling people that it’s your last season, they start with their, “What can we do? You’re our favorite assembly!” It's like, you want to cry with them, but at the same time you want to go, “Yes, we did it!” You know? We made a difference! You know, during the last show we taped, it was really a hard one, I’d say.
 
-(Singing) presents for the girls and gifts for the boys. 
+[Singing] 
+Presents for the girls and gifts for the boys. 
 Spend my whole life making children's toys
 Excuse me, if I'm ready to escape the noise!
 I've been doing this all these years

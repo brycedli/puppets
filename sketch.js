@@ -15,6 +15,7 @@ let windowImage;
 let drawImage = false;
 let popup;
 let popupVideo;
+let popupAudio;
 
 const TEXT_SIZE = 30;
 function preload() {
@@ -47,11 +48,12 @@ function setup() {
   charWidth = textWidth("0");
   loadStrings('content.txt', onLoadStrings);
   video = createVideo("assets/videos/bear.mp4");
+  video.volume(0.2);
   video.hide();
   noiseGraphics = createGraphics(windowWidth, windowHeight);
   main = createGraphics(windowWidth, windowHeight);
   glslCanvas = createGraphics(windowWidth, windowHeight, WEBGL);
-
+  pixelDensity(0.5);
 }
 
 function draw() {
@@ -70,12 +72,22 @@ function draw() {
   let vidHeight = vidWidth * video.height / video.width;
   if (hasClicked) {
 
-    main.image(video, width / 2, scrollPos + vidHeight / 2, vidWidth, vidHeight);
+    if (scrollPos > -vidHeight) {
+        main.image(video, width / 2, scrollPos + vidHeight / 2, vidWidth, vidHeight);
+    }
+    else{
+      let newVidWidth = 2 * unit;
+      let newVidHeight = newVidWidth * video.height / video.width;
+      main.imageMode(CORNER);
+      main.image(video, unit/2, height - newVidHeight - unit/2, newVidWidth, newVidHeight);
+    }
+    main.imageMode(CENTER);
     main.textSize(128);
     main.text("Building character", width / 2, height / 2 + scrollPos);
     main.textSize(40);
     main.textFont(spaceMono);
     main.text("In conversation with Michael Sadecky", width / 2, height / 2 + scrollPos + unit / 2);
+
   }
   else {
     main.fill(0);
@@ -109,7 +121,7 @@ function draw() {
   glslCanvas.shader(vhs);
   glslCanvas.rect(0, 0, width, height);
   scale(1, -1);
-  image(glslCanvas, 0, -height);
+  image(glslCanvas, 0, -height, windowWidth, windowHeight);
 }
 
 function mousePressed() {
@@ -119,6 +131,10 @@ function mousePressed() {
   if (popupVideo) {
     popupVideo.stop();
     popupVideo = null;
+  }
+  if (popupAudio) {
+    popupAudio.stop();
+    popupAudio = null;
   }
   
 }
@@ -139,6 +155,14 @@ function mouseWheel() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  // noiseGraphics.remove();
+  main.remove();
+  // glslCanvas.remove();
+  // noiseGraphics = createGraphics(windowWidth, windowHeight);
+  main = createGraphics(windowWidth, windowHeight);
+  paragraphs = [];
+  loadStrings('content.txt', onLoadStrings);
+  // glslCanvas = createGraphics(windowWidth, windowHeight, WEBGL);
 }
 
 
