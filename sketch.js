@@ -11,13 +11,16 @@ let gradient;
 let story;
 let paragraphs = [];
 let charWidth;
-const TEXT_SIZE = 38;
+let windowImage;
+let drawImage = false;
+let focusImage;
+const TEXT_SIZE = 30;
 function preload() {
   caslonRounded = loadFont("assets/fonts/caslon-rounded-regular.otf");
   spaceMono = loadFont("assets/fonts/space-mono-regular.ttf");
   vhs = loadShader("assets/shaders/vhs.vert", "assets/shaders/vhs.frag");
   gradient = loadImage("assets/images/gradient.png");
-
+  windowImage = loadImage("assets/images/window.png");
 }
 
 function onLoadStrings(data) {
@@ -28,6 +31,19 @@ function onLoadStrings(data) {
     }
     paragraphs.push(new Paragraph(paragraph, width * 2/3, charWidth));
   })
+}
+
+function onClickLink (code) {
+  
+  if (code == "[Hannah]"){
+    print(code);
+    drawImage = true;
+    focusImage = loadImage("assets/images/lesser.jpeg");
+  }
+  if (code == "[Sadecky’s_Puppets]"){
+    drawImage = true;
+    focusImage = loadImage("assets/images/sadecky.jpg");
+  }
 }
 
 function setup() {
@@ -78,7 +94,12 @@ function draw() {
     paragraph.draw(main, unit * 2, scrollPos + offset);
     offset += paragraph.height;
   })
-
+  if (drawImage) {
+    let msWidth = width/2;
+    let msHeight = msWidth * windowImage.height / windowImage.width;
+    main.image(windowImage, width / 2, height/2, msWidth, msHeight);
+    main.image(focusImage, width / 2, height/2, msWidth*3/4, msHeight*3/4);
+  }
 
   // post processing
   noiseGraphics.noStroke();
@@ -104,6 +125,9 @@ function draw() {
 function mousePressed() {
   video.loop();
   hasClicked = true;
+  if (drawImage) {
+    drawImage = false;
+  }
 }
 
 function mouseWheel() {

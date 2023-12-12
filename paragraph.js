@@ -15,10 +15,12 @@ class Paragraph {
         for (let i = 0; i < this.text.length; i++) {
             openingBracket = this.text[i].search(/[\[\(]/);
             let closingBracket = this.text[i].search(/[\]\)]/);
+            let content = this.text[i].substring(openingBracket, closingBracket+1);
             if (openingBracket != -1 && closingBracket != -1) {
-                this.links.push(new Link(openingBracket, i-1, closingBracket - openingBracket + 1));
+                this.links.push(new Link(openingBracket, i-1, closingBracket - openingBracket + 1, content));
             }
         }
+        this.pressedLastframe = false;
     }
 
     draw (canvas, x, y){
@@ -34,6 +36,19 @@ class Paragraph {
             let rY = y + link.y * this.lineHeight + this.lineHeight * 0.2 - 2;
             let rW = link.length * this.charWidth  + 16;
             let rH = this.lineHeight + 4;
+
+            if (mouseX > rX && mouseX < rX + rW && mouseY > rY && mouseY < rY + rH) {
+                canvas.stroke(255, 0, 0);
+                canvas.strokeWeight(8);
+                if (mouseIsPressed) {canvas.fill(255, 0, 0);}
+                if (mouseIsPressed && this.pressedLastframe == false) {
+                    onClickLink(link.text);
+                    this.pressedLastframe = true;
+                    
+                }
+                
+                
+            }
             canvas.rect(rX, rY, rW, rH, corner, corner, corner, corner);
         })
         canvas.noStroke();
@@ -47,14 +62,16 @@ class Paragraph {
         for (let i = 0; i < this.text.length; i++) {
             canvas.text(this.text[i], x, y + this.lineHeight * i);
         }
+        this.pressedLastframe = mouseIsPressed;
     }
 }
 
 class Link {
-    constructor(x,y, length){
+    constructor(x,y, length, text){
         this.x = x;
         this.y = y;
         this.length = length;
+        this.text = text;
     }
 
     
