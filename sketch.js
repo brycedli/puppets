@@ -117,7 +117,7 @@ function draw() {
       }
     }
 
-    main.fill("#9B0014");
+    main.fill("blue");
     let moveTime = 0.05 * (millis() - timeSinceClicked);
     main.rect(0 - moveTime * moveTime + scrollPos, 0, vidWidth / 2, vidHeight);
     main.rect(width / 2 + moveTime * moveTime - scrollPos, 0, vidWidth / 2, vidHeight);
@@ -136,9 +136,9 @@ function draw() {
   else {
 
     if (scrollPos > 0) {
-      main.background("#9B0014");
+      main.background("blue");
     }
-    main.fill("#9B0014");
+    main.fill("blue");
     main.rect(scrollPos, 0, vidWidth / 2, vidHeight);
     main.rect(width / 2 - scrollPos, 0, vidWidth / 2, vidHeight);
 
