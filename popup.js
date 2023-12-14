@@ -20,12 +20,14 @@ class Popup {
             popupVideo = createVideo("assets/videos/birthday.mp4");
             popupVideo.hide();
             popupVideo.loop();
+            isVideoPlaying = false;
             video.pause();
         }
         else if (code == "[I'm_the_toast_of_Christmas_past]"){
             popupVideo = createVideo("assets/videos/toast.mov");
             popupVideo.hide();
             popupVideo.loop();
+            isVideoPlaying = false;
             video.pause();
         }  
         else if (code =="[for_sale]"){
@@ -36,6 +38,7 @@ class Popup {
         else if (code == "[Stuck_inside_a_whale!]"){
             this.focusImage = loadImage("assets/images/audio.png");
             popupAudio = loadSound("assets/audio/whale.m4a", () => {popupAudio.loop()});
+            isVideoPlaying = false;
             video.pause();
         }
         else if (code == "[$15]") {
@@ -48,6 +51,7 @@ class Popup {
             popupVideo = createVideo("assets/videos/fables.mp4");
             popupVideo.hide();
             popupVideo.loop();
+            isVideoPlaying = false;
             video.pause();
         }
         else if (code == "[lungs_puppet]"){
@@ -57,6 +61,7 @@ class Popup {
             popupVideo = createVideo("assets/videos/breathless.mp4");
             popupVideo.hide();
             popupVideo.loop();
+            isVideoPlaying = false;
             video.pause();
         }
         else if (code == "[Funko_Pops]"){
@@ -98,11 +103,13 @@ class Popup {
         else if (code == "[Singing]"){
             this.focusImage = loadImage("assets/images/audio.png");
             popupAudio = loadSound("assets/audio/tired.m4a", () => {popupAudio.loop()});
+            isVideoPlaying = false;
             video.pause();
         }
         else if (code == "[Mean_Dude_voice]"){
             this.focusImage = loadImage("assets/images/audio.png");
             popupAudio = loadSound("assets/audio/meandude.m4a", () => {popupAudio.loop()});
+            isVideoPlaying = false;
             video.pause();
         }
         else if (code == "[YouTube]"){

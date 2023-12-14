@@ -1,4 +1,5 @@
 let video;
+let isVideoPlaying = false;
 let main;
 let vhs;
 let noiseGraphics;
@@ -18,8 +19,11 @@ let popup;
 let popupVideo;
 let popupAudio;
 let spotlightPos;
+let smallBounds = new Array(4);
+let largeBounds = new Array(4);
+let pause, play;
 
-const TEXT_SIZE = 30;
+const TEXT_SIZE = 34;
 
 function preload() {
   caslonRounded = loadFont("assets/fonts/caslon-rounded-regular.otf");
@@ -27,6 +31,8 @@ function preload() {
   vhs = loadShader("assets/shaders/vhs.vert", "assets/shaders/vhs.frag");
   gradient = loadImage("assets/images/gradient.png");
   windowImage = loadImage("assets/images/window.png");
+  pause = loadImage("assets/images/pause.png");
+  play = loadImage("assets/images/play.png");
 }
 
 function onLoadStrings(data) {
@@ -35,7 +41,7 @@ function onLoadStrings(data) {
     if (paragraph == "") {
       return;
     }
-    paragraphs.push(new Paragraph(paragraph, width /2, charWidth));
+    paragraphs.push(new Paragraph(paragraph, width / 2, charWidth));
   })
 }
 
@@ -79,13 +85,36 @@ function draw() {
   if (hasClicked) {
 
     if (scrollPos > -vidHeight) {
+      largeBounds[0] = 0;
+      largeBounds[1] = 0;
+      largeBounds[2] = vidWidth;
+      largeBounds[3] = vidHeight + scrollPos;
+      
       main.image(video, width / 2, scrollPos + vidHeight / 2, vidWidth, vidHeight);
+
+      if (isVideoPlaying) {
+        main.image(pause, unit, height - unit/2 + scrollPos, unit, unit / 2);
+      }
+      else {
+        main.image(play, unit, height - unit/2 + scrollPos, unit, unit / 2);
+      }
     }
     else {
       let newVidWidth = unit * 3;
       let newVidHeight = newVidWidth * video.height / video.width;
       main.imageMode(CORNER);
-      main.image(video, width - unit / 4 - newVidWidth, height - newVidHeight - unit / 4, newVidWidth, newVidHeight);
+      smallBounds[0] = width - unit / 4 - newVidWidth;
+      smallBounds[1] = height - newVidHeight - unit / 4;
+      smallBounds[2] = smallBounds[0] + newVidWidth;
+      smallBounds[3] = smallBounds[1] + newVidHeight;
+      main.image(video, smallBounds[0], smallBounds[1], newVidWidth, newVidHeight);
+      main.imageMode(CENTER);
+      if (isVideoPlaying) {
+        main.image(pause, smallBounds[2] - unit * 3/4, smallBounds[3] - unit / 2, unit, unit / 2);
+      }
+      else {
+        main.image(play, smallBounds[2] - unit * 3/4, smallBounds[3] - unit / 2, unit, unit / 2);
+      }
     }
 
     main.fill("#9B0014");
@@ -157,10 +186,29 @@ function draw() {
 }
 
 function mousePressed() {
-  video.loop();
+  let inSmall = (mouseX > smallBounds[0] && mouseX < smallBounds[2] && mouseY > smallBounds[1] && mouseY < smallBounds[3]);
+  let inLarge = (mouseX > largeBounds[0] && mouseX < largeBounds[2] && mouseY > largeBounds[1] && mouseY < largeBounds[3]);
+  if (inSmall || inLarge) {
+    if (isVideoPlaying) {
+      video.pause();
+      isVideoPlaying = false;
+    }
+    else {
+      video.loop();
+      isVideoPlaying = true;
+    }
+  }
+
+
+
   if (!hasClicked) {
     timeSinceClicked = millis();
+    isVideoPlaying = true;
+    video.loop();
+
   }
+
+
   hasClicked = true;
 
   popup = null;
@@ -221,7 +269,7 @@ function drawSpotlight() {
   }
   // spotlightPos = lerp(spotlightPos, mouse, millis());
   main.fill(255);
-  
+
   main.circle(spotlightPos.x, spotlightPos.y, spotlightWidth * 2);
 }
 
